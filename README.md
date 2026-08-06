@@ -406,138 +406,78 @@ python main.py
 
 ## Detection Results
 
-▶️ [Watch the Object Detection Demo](images/image_detection.mp4)
-```
+🎥 **Object Detection Demo**
 
+▶️ [Watch the Object Detection Demo](images/image_detection.mp4)
 
 ---
 
 ## Image Enhancement Results
 
-![Upload PDF](images/underwater image.jpg)
+The following figure compares the original underwater image with the outputs of different enhancement techniques used in this project.
 
-
-```
-Original
-
-↓
-
-Hybrid Dehazing
-
-↓
-
-Polarization
-
-↓
-
-FUnIE-GAN
-
-↓
-
-CLAHE
-```
-
----
-
-## Distance Estimation
-
-> **Insert screenshots here**
-
-```
-Distance measured using Ping Sonar
-
-Bounding Box Width
-
-Calculated Physical Size
-```
+![Underwater Image Enhancement Comparison](images/underwater%20image.jpg)
 
 ---
 
 ## Physical Size Estimation
 
-> **Insert screenshots here**
+The system estimates the physical dimensions of detected underwater objects by combining YOLOv8 bounding box measurements with sonar-based distance estimation using the underwater pinhole camera model.
 
-```
-Detected Width
-
-Estimated Width
-
-Ground Truth Comparison
-```
+![Physical Size Estimation](images/object%20dimension%20measurement.png)
 
 ---
 
 ## Performance Metrics
 
-| Metric              | Value          |
-| ------------------- | -------------- |
-| Detection Model     | YOLOv8n        |
-| Real-Time Inference | *(Add Result)* |
-| Detection Accuracy  | *(Add Result)* |
-| FPS                 | *(Add Result)* |
-| Enhancement Time    | *(Add Result)* |
-| Sonar Accuracy      | *(Add Result)* |
+| Metric | Value |
+|---------|-------|
+| Detection Model | YOLOv8n |
+| Framework | PyTorch + OpenCV |
+| Hardware | NVIDIA Jetson Orin Nano |
+| Distance Sensor | Blue Robotics Ping Sonar |
+| Camera | Deepwater Explore HD Camera |
+| Enhancement Methods | Hybrid Dehazing, Polarization, FUnIE-GAN, CLAHE |
 
 ---
 
 # 🎥 Demo Videos
 
-## Object Detection
-
-> Add your GitHub video link here.
-
-```
-results/videos/object_detection.mp4
-```
-
----
-
-## Underwater Enhancement
-
-> Add your GitHub video link here.
-
-```
-results/videos/enhancement_demo.mp4
-```
-
----
-
 ## Complete System Demonstration
 
-> Add your GitHub video link here.
-
-```
-results/videos/full_demo.mp4
-```
+▶️ [Watch Complete System Demo](images/enhancedplusdetection.mp4)
 
 ---
 
 # 📷 Screenshots
 
-## Detection Output
+## Hybrid Color Correction & Dehazing
 
-```md
-![Detection](results/images/detection.png)
-```
+![Hybrid Dehazing](images/HE.png)
 
 ---
 
-## Enhancement Output
+## Polarization-Based Dehazing
 
-```md
-![Enhancement](results/images/enhancement.png)
-```
+![Polarization](images/polarization.jpg)
 
 ---
 
-## Size Estimation
+## CLAHE
 
-```md
-![Size Estimation](results/images/size_estimation.png)
-```
+![CLAHE](images/clahe.jpg)
 
 ---
 
+## Physical Size Measurement
+
+![Physical Size Measurement](images/object%20dimension%20measurement.png)
+
+---
+
+## Detection Pipeline
+
+![Detection Comparison](images/comparison.png)
 # 🔮 Future Improvements
 
 * Stereo vision-based depth estimation
