@@ -404,52 +404,48 @@ python main.py
 
 # 📊 Experimental Results
 
-## Detection Results
-
-🎥 **Object Detection Demo**
+## 🎥 Object Detection Demo
 
 ▶️ [Watch the Object Detection Demo](images/image_detection.mp4)
 
 ---
 
-## Image Enhancement Results
+## 🖼️ Image Enhancement Results
 
-The following figure compares the original underwater image with the outputs of different enhancement techniques used in this project.
+The following comparison shows the original underwater image alongside the outputs produced by the enhancement techniques implemented in this project.
 
-![Underwater Image Enhancement Comparison](images/underwaterimage.jpg)
-
----
-
-## Physical Size Estimation
-
-The system estimates the physical dimensions of detected underwater objects by combining YOLOv8 bounding box measurements with sonar-based distance estimation using the underwater pinhole camera model.
-
-![Physical Size Estimation](images/objectdimensioneasurement.png)
+![Image Enhancement Comparison](images/underwater%20image.jpg)
 
 ---
 
-## Performance Metrics
+## 📏 Physical Size Estimation
+
+The physical dimensions of detected underwater objects are estimated using the underwater pinhole camera model together with distance measurements obtained from the Blue Robotics Ping Sonar.
+
+![Physical Size Estimation](images/objectdimensionmeasurement.png)
+
+---
+
+## 📈 Performance Metrics
 
 | Metric | Value |
 |---------|-------|
 | Detection Model | YOLOv8n |
 | Framework | PyTorch + OpenCV |
 | Hardware | NVIDIA Jetson Orin Nano |
-| Distance Sensor | Blue Robotics Ping Sonar |
 | Camera | Deepwater Explore HD Camera |
-| Enhancement Methods | Hybrid Dehazing, Polarization, FUnIE-GAN, CLAHE |
+| Distance Sensor | Blue Robotics Ping Sonar |
+| Enhancement Techniques | Hybrid Dehazing, Polarization-Based Dehazing, FUnIE-GAN, CLAHE |
 
 ---
 
-# 🎥 Demo Videos
+# 🎥 Complete System Demo
 
-## Complete System Demonstration
-
-▶️ [Watch Complete System Demo](images/enhancedplusdetection.mp4)
+▶️ [Watch the Complete System Demonstration](images/enhancedplusdetection.mp4)
 
 ---
 
-# 📷 Screenshots
+# 📷 Enhancement Results
 
 ## Hybrid Color Correction & Dehazing
 
@@ -469,29 +465,15 @@ The system estimates the physical dimensions of detected underwater objects by c
 
 ---
 
+## Detection Result
+
+![Detection Result](images/comparison.png)
+
+---
+
 ## Physical Size Measurement
 
-![Physical Size Measurement](images/objectdimensionmeasurement.png)
-
----
-
-## Detection Pipeline
-
-![Detection Comparison](images/comparison.png)
-# 🔮 Future Improvements
-
-* Stereo vision-based depth estimation
-* Multi-object tracking
-* Deep SORT integration
-* Instance segmentation
-* Transformer-based underwater detection
-* Improved sonar-camera fusion
-* ROS2 integration
-* SLAM support
-* 3D underwater mapping
-* Autonomous navigation
-
----
+![Watch the object dimension measurement](images/objectdimensionmeasurement.mp4)
 
 # 👥 Team
 
