@@ -422,7 +422,7 @@ The following comparison shows the original underwater image alongside the outpu
 
 The physical dimensions of detected underwater objects are estimated using the underwater pinhole camera model together with distance measurements obtained from the Blue Robotics Ping Sonar.
 
-![Physical Size Estimation](images/objectdimensionmeasurement.png)
+![Physical Size Estimation](images/pinhole.jpg)
 
 ---
 
