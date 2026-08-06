@@ -471,7 +471,7 @@ The system estimates the physical dimensions of detected underwater objects by c
 
 ## Physical Size Measurement
 
-![Physical Size Measurement](images/object%20dimension%20measurement.png)
+![Physical Size Measurement](images/objectdimensionmeasurement.png)
 
 ---
 
