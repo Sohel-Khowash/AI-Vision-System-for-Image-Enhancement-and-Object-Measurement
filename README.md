@@ -406,21 +406,16 @@ python main.py
 
 ## Detection Results
 
-> **Insert screenshots here**
-
+▶️ [Watch the Object Detection Demo](images/image_detection.mp4)
 ```
-results/images/detection_1.png
 
-results/images/detection_2.png
-
-results/images/detection_3.png
-```
 
 ---
 
 ## Image Enhancement Results
 
-> **Insert comparison images here**
+![Upload PDF](images/underwater image.jpg)
+
 
 ```
 Original
