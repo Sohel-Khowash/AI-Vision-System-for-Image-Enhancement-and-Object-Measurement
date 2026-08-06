@@ -416,7 +416,7 @@ python main.py
 
 The following figure compares the original underwater image with the outputs of different enhancement techniques used in this project.
 
-![Underwater Image Enhancement Comparison](images/underwater%20image.jpg)
+![Underwater Image Enhancement Comparison](images/underwaterimage.jpg)
 
 ---
 
@@ -424,7 +424,7 @@ The following figure compares the original underwater image with the outputs of 
 
 The system estimates the physical dimensions of detected underwater objects by combining YOLOv8 bounding box measurements with sonar-based distance estimation using the underwater pinhole camera model.
 
-![Physical Size Estimation](images/object%20dimension%20measurement.png)
+![Physical Size Estimation](images/objectdimensioneasurement.png)
 
 ---
 
