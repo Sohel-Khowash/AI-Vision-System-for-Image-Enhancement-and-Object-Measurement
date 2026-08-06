@@ -1,4 +1,4 @@
-# 🌊 Underwater Object Detection and Physical Size Estimation using Computer Vision and Sonar
+#  Underwater Object Detection and Physical Size Estimation using Computer Vision and Sonar
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C.svg)](https://pytorch.org/)
@@ -410,9 +410,9 @@ python main.py
 
 ---
 
-## 🖼️ Image Enhancement Results
+## 🖼️ Image Enhancement
 
-The following comparison shows the original underwater image alongside the outputs produced by the enhancement techniques implemented in this project.
+The following comparison shows the original underwater image.
 
 ![Image Enhancement Comparison](images/underwater%20image.jpg)
 
@@ -473,7 +473,7 @@ The physical dimensions of detected underwater objects are estimated using the u
 
 ## Physical Size Measurement
 
-![Watch the object dimension measurement](images/objectdimensionmeasurement.mp4)
+▶️[Watch the object dimension measurement](images/objectdimensionmeasurement.mp4)
 
 # 👥 Team
 
