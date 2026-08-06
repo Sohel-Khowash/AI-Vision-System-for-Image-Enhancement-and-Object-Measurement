@@ -1,84 +1,607 @@
-# Underwater Object Detection and Size Estimation
+# 🌊 Underwater Object Detection and Physical Size Estimation using Computer Vision and Sonar
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C.svg)](https://pytorch.org/)
 [![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-00FFFF.svg)](https://github.com/ultralytics/ultralytics)
-[![Hardware](https://img.shields.io/badge/Hardware-NVIDIA%20Jetson%20Orin%20Nano-76B900.svg)](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green.svg)](https://opencv.org/)
+[![Jetson](https://img.shields.io/badge/Hardware-NVIDIA%20Jetson%20Orin%20Nano-76B900.svg)](https://developer.nvidia.com/embedded/jetson-orin)
 
-An end-to-end computer vision and sensor integration framework designed for Autonomous Underwater Vehicles (AUVs) and marine robotics. This project combines a single-beam Sonar sensor, camera visual feed, and deep learning (YOLOv8n) with underwater physical refraction modeling to achieve real-time object detection, distance estimation, and true physical size measurement[cite: 1].
+An end-to-end underwater computer vision framework developed for **Autonomous Underwater Vehicles (AUVs)** that performs **real-time object detection, underwater image enhancement, distance estimation, and physical size measurement**.
 
-To maintain reliable performance in murky or turbid water, this repository integrates multiple state-of-the-art enhancement pipelines including **Hybrid Color Correction & Dehazing**, **Polarization-Based Dehazing**, **FUnIE-GAN**, and **CLAHE**[cite: 1].
+The system integrates a **Deepwater Explore HD Camera**, **Blue Robotics Ping Sonar**, and a **YOLOv8n object detection model** running on an **NVIDIA Jetson Orin Nano**. To improve visibility in challenging underwater environments, several enhancement techniques including **Hybrid Color Correction & Dehazing**, **Polarization-Based Dehazing**, **FUnIE-GAN**, and **CLAHE** are incorporated.
 
----
-
-## 📋 Table of Contents
-- [Team & Acknowledgments](#-team--acknowledgments)
-- [Mathematical Model](#-mathematical-model)
-- [Directory Structure](#-directory-structure)
-- [Hardware Setup](#-hardware-setup)
-- [Installation & Setup](#-installation--setup)
-- [Usage](#-usage)
-- [Image & Video Enhancement Methods](#-image--video-enhancement-methods)
-- [Experimental Results](#-experimental-results)
-- [References](#-references)
+The project demonstrates how deep learning and sensor fusion can be combined to perform reliable underwater perception even in low-visibility environments.
 
 ---
 
-## 👥 Team & Acknowledgments
+# 📑 Table of Contents
 
-* **Institution:** National Institute of Technology (NIT) Silchar[cite: 1]
-* **Supervisor:** Prof. Binoy Krishna Roy[cite: 1]
-* **Authors:**
-  * Sohel Khowash (Roll: 2213071)[cite: 1]
-  * Debasish Das (Roll: 2213076)[cite: 1]
-  * Zohab Faiz (Roll: 2213142)[cite: 1]
-* **Presentation Date:** May 13, 2026[cite: 1]
-
----
-
-## 📐 Mathematical Model
-
-### 1. Refractive Pinhole Model
-Standard camera pinhole geometry is adjusted for underwater light refraction using the refractive index of water ($n \approx 1.33$)[cite: 1]:
-
-$$d_{\text{underwater}} \approx 1.33 \cdot d_{\text{air}}$$
-
-Where $d$ represents the calibrated focal length[cite: 1].
-
-### 2. Physical Size & Distance Calculations
-Using similar triangles from the pinhole model[cite: 1]:
-
-$$\frac{W}{D} = \frac{w}{d_{\text{underwater}}}$$
-
-* **Distance Estimation ($D$):** When real-world object dimension ($W$) is known[cite: 1]:
-  $$D = \frac{d_{\text{underwater}} \cdot W}{w}$$
-
-* **Physical Size Estimation ($W$):** When distance ($D$) is provided by Sonar[cite: 1]:
-  $$W = \frac{w \cdot D}{d_{\text{underwater}}}$$
+* Project Overview
+* Features
+* System Architecture
+* Hardware Used
+* Software Stack
+* Mathematical Model
+* Directory Structure
+* Installation
+* Running the Project
+* Underwater Enhancement Techniques
+* Experimental Results
+* Demo Videos
+* Future Improvements
+* Team
+* References
+* License
 
 ---
 
-## 📂 Directory Structure
+# 🚀 Project Overview
 
-```bash
-.
+Underwater environments present several challenges for computer vision systems including:
+
+* Poor illumination
+* Color distortion
+* Water turbidity
+* Light scattering
+* Low contrast
+* Suspended particles
+
+These issues significantly reduce the performance of conventional object detection algorithms.
+
+This project addresses these problems through:
+
+* Underwater image enhancement
+* Real-time object detection using YOLOv8n
+* Sonar-assisted distance measurement
+* Physical size estimation using camera calibration and the pinhole camera model
+* Deployment on NVIDIA Jetson Orin Nano for edge inference
+
+---
+
+# ✨ Features
+
+* Real-time underwater object detection
+* Underwater image enhancement
+* Sonar-based distance estimation
+* Physical size estimation of detected objects
+* Camera calibration support
+* Hardware deployment on Jetson Orin Nano
+* Live visualization with OpenCV
+* Modular architecture
+* Multiple enhancement algorithms
+* Sensor fusion between camera and sonar
+
+---
+
+# 🏗️ System Architecture
+
+```
+                 Underwater Scene
+                        │
+        ┌───────────────┴───────────────┐
+        │                               │
+        ▼                               ▼
+ Explore HD Camera                Ping Sonar
+        │                               │
+        ▼                               ▼
+ Image Enhancement              Distance Reading
+        │                               │
+        ▼                               │
+    YOLOv8 Detection                     │
+        │                               │
+        └──────────────┬────────────────┘
+                       ▼
+         Physical Size Estimation
+                       │
+                       ▼
+            Live Visualization Output
+```
+
+---
+
+# ⚙️ Hardware Used
+
+| Component                   | Description              |
+| --------------------------- | ------------------------ |
+| NVIDIA Jetson Orin Nano     | Edge AI Computing Device |
+| Deepwater Explore HD Camera | Underwater Camera        |
+| Blue Robotics Ping Sonar    | Single Beam Sonar        |
+| USB TTL Adapter             | Sonar Communication      |
+| Waterproof Housing          | Camera Protection        |
+| Power Supply                | Jetson Power             |
+
+---
+
+# 💻 Software Stack
+
+## Programming Languages
+
+* Python
+
+## Libraries
+
+* OpenCV
+* PyTorch
+* Ultralytics YOLOv8
+* NumPy
+* SciPy
+* Matplotlib
+* PySerial
+* Pillow
+
+## Development Tools
+
+* NVIDIA JetPack
+* VS Code
+* Git
+* Jupyter Notebook
+
+---
+
+# 🧠 Object Detection Model
+
+The project uses **YOLOv8n**, a lightweight object detection model optimized for real-time inference.
+
+### Detection Pipeline
+
+```
+Input Frame
+
+↓
+
+Image Enhancement
+
+↓
+
+YOLOv8 Inference
+
+↓
+
+Bounding Boxes
+
+↓
+
+Object Classification
+
+↓
+
+Distance Estimation
+
+↓
+
+Physical Size Estimation
+
+↓
+
+Visualization
+```
+
+---
+
+# 📸 Camera Calibration
+
+Camera calibration is performed using OpenCV to obtain:
+
+* Camera Intrinsic Matrix
+* Distortion Coefficients
+* Focal Length
+* Principal Point
+
+These calibration parameters are used for accurate physical measurements.
+
+---
+
+# 📐 Mathematical Model
+
+## Underwater Refractive Pinhole Model
+
+Since light bends while travelling from water to air, the effective focal length changes due to the refractive index of water.
+
+[
+d_{water} \approx 1.33 \times d_{air}
+]
+
+where
+
+* (d_{air}) = calibrated focal length
+* (d_{water}) = effective underwater focal length
+
+---
+
+## Distance Estimation
+
+Using the pinhole camera model,
+
+[
+D=\frac{d_{water}\times W}{w}
+]
+
+Where
+
+* D = Distance
+* W = Actual object width
+* w = Width of detected object in pixels
+
+---
+
+## Physical Size Estimation
+
+When sonar provides the distance,
+
+[
+W=\frac{w\times D}{d_{water}}
+]
+
+Where
+
+* W = Actual object width
+* D = Sonar distance
+* w = Bounding box width in pixels
+
+---
+
+# 🌊 Underwater Enhancement Techniques
+
+The project evaluates multiple enhancement methods.
+
+## 1. Hybrid Color Correction & Dehazing
+
+Features
+
+* Color restoration
+* Contrast enhancement
+* White balancing
+* Visibility improvement
+
+---
+
+## 2. Polarization-Based Dehazing
+
+Features
+
+* Removes scattering
+* Restores underwater visibility
+* Preserves object boundaries
+
+---
+
+## 3. FUnIE-GAN
+
+Features
+
+* Deep learning enhancement
+* Real-time processing
+* Improved color correction
+* Better visual quality
+
+---
+
+## 4. CLAHE
+
+Features
+
+* Adaptive histogram equalization
+* Contrast enhancement
+* Lightweight processing
+* Fast execution
+
+---
+
+# 📂 Project Structure
+
+```text
+Underwater-Object-Detection/
+
+│
 ├── config/
-│   ├── camera_calibration.yaml   # Camera intrinsic matrices & distortion coeffs
-│   └── sonar_config.json         # Baud rate and port configuration for Sonar
+│   ├── camera_calibration.yaml
+│   └── sonar_config.json
+│
+├── datasets/
+│
 ├── models/
-│   ├── yolov8n_underwater.pt     # Trained YOLOv8n object detection weights
-│   └── funie_gan_generator.pth   # Pre-trained FUnIE-GAN weights for video enhancement
+│   ├── yolov8n_underwater.pt
+│   └── funie_gan_generator.pth
+│
 ├── src/
 │   ├── enhancement/
-│   │   ├── clahe.py              # CLAHE processing pipeline
-│   │   ├── hybrid_dehaze.py      # Hybrid Color Correction & Dehazing
-│   │   ├── polarization.py       # Polarization-based scattering restoration
-│   │   └── funie_gan.py          # GAN-based real-time enhancement
+│   │   ├── clahe.py
+│   │   ├── hybrid_dehaze.py
+│   │   ├── polarization.py
+│   │   └── funie_gan.py
+│   │
 │   ├── sensors/
-│   │   ├── camera_stream.py      # OpenCV feed processor for Explore HD
-│   │   └── sonar_ping.py         # Serial interface for Ping Sonar
-│   ├── detection.py              # YOLOv8 inference script
-│   └── estimation.py             # Size and distance calculation engine
-├── main.py                       # Main execution script for hardware
-├── requirements.txt              # Dependencies
-└── README.md                     # Project documentation
+│   │   ├── camera_stream.py
+│   │   └── sonar_ping.py
+│   │
+│   ├── detection.py
+│   ├── estimation.py
+│   └── utils.py
+│
+├── results/
+│   ├── images/
+│   ├── videos/
+│   └── graphs/
+│
+├── requirements.txt
+├── main.py
+└── README.md
+```
+
+---
+
+# 📦 Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/yourusername/Underwater-Object-Detection.git
+```
+
+```bash
+cd Underwater-Object-Detection
+```
+
+---
+
+## Create Virtual Environment
+
+Windows
+
+```bash
+python -m venv venv
+```
+
+```bash
+venv\Scripts\activate
+```
+
+Linux
+
+```bash
+python3 -m venv venv
+```
+
+```bash
+source venv/bin/activate
+```
+
+---
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# ▶️ Running the Project
+
+## Start Camera
+
+```bash
+python src/sensors/camera_stream.py
+```
+
+---
+
+## Start Sonar
+
+```bash
+python src/sensors/sonar_ping.py
+```
+
+---
+
+## Run Detection
+
+```bash
+python main.py
+```
+
+---
+
+# 📊 Experimental Results
+
+## Detection Results
+
+> **Insert screenshots here**
+
+```
+results/images/detection_1.png
+
+results/images/detection_2.png
+
+results/images/detection_3.png
+```
+
+---
+
+## Image Enhancement Results
+
+> **Insert comparison images here**
+
+```
+Original
+
+↓
+
+Hybrid Dehazing
+
+↓
+
+Polarization
+
+↓
+
+FUnIE-GAN
+
+↓
+
+CLAHE
+```
+
+---
+
+## Distance Estimation
+
+> **Insert screenshots here**
+
+```
+Distance measured using Ping Sonar
+
+Bounding Box Width
+
+Calculated Physical Size
+```
+
+---
+
+## Physical Size Estimation
+
+> **Insert screenshots here**
+
+```
+Detected Width
+
+Estimated Width
+
+Ground Truth Comparison
+```
+
+---
+
+## Performance Metrics
+
+| Metric              | Value          |
+| ------------------- | -------------- |
+| Detection Model     | YOLOv8n        |
+| Real-Time Inference | *(Add Result)* |
+| Detection Accuracy  | *(Add Result)* |
+| FPS                 | *(Add Result)* |
+| Enhancement Time    | *(Add Result)* |
+| Sonar Accuracy      | *(Add Result)* |
+
+---
+
+# 🎥 Demo Videos
+
+## Object Detection
+
+> Add your GitHub video link here.
+
+```
+results/videos/object_detection.mp4
+```
+
+---
+
+## Underwater Enhancement
+
+> Add your GitHub video link here.
+
+```
+results/videos/enhancement_demo.mp4
+```
+
+---
+
+## Complete System Demonstration
+
+> Add your GitHub video link here.
+
+```
+results/videos/full_demo.mp4
+```
+
+---
+
+# 📷 Screenshots
+
+## Detection Output
+
+```md
+![Detection](results/images/detection.png)
+```
+
+---
+
+## Enhancement Output
+
+```md
+![Enhancement](results/images/enhancement.png)
+```
+
+---
+
+## Size Estimation
+
+```md
+![Size Estimation](results/images/size_estimation.png)
+```
+
+---
+
+# 🔮 Future Improvements
+
+* Stereo vision-based depth estimation
+* Multi-object tracking
+* Deep SORT integration
+* Instance segmentation
+* Transformer-based underwater detection
+* Improved sonar-camera fusion
+* ROS2 integration
+* SLAM support
+* 3D underwater mapping
+* Autonomous navigation
+
+---
+
+# 👥 Team
+
+**Institution**
+
+National Institute of Technology Silchar
+
+---
+
+**Project Supervisor**
+
+Prof. Binoy Krishna Roy
+
+---
+
+**Team Members**
+
+* Sohel Khowash
+* Debasish Das
+* Zohab Faiz
+
+---
+
+# 📚 References
+
+1. Ultralytics YOLOv8 Documentation
+
+2. OpenCV Camera Calibration Documentation
+
+3. FUnIE-GAN: Underwater Image Enhancement using Generative Adversarial Networks
+
+4. Blue Robotics Ping Sonar Documentation
+
+5. NVIDIA Jetson Orin Nano Documentation
+
+6. OpenCV Documentation
+
+---
+
+# 📄 License
+
+This project is developed for academic and research purposes.
+
+Feel free to fork, improve, and use this repository with proper attribution.
+
+---
+
+# ⭐ If you found this project useful, consider giving it a Star on GitHub!
