@@ -520,5 +520,3 @@ This project is developed for academic and research purposes.
 Feel free to fork, improve, and use this repository with proper attribution.
 
 ---
-
-# ⭐ If you found this project useful, consider giving it a Star on GitHub!
